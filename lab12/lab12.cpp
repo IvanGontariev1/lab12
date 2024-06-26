@@ -1,8 +1,7 @@
-﻿#include <iostream>
+#include <iostream>
 
 const int rows = 10;
 const int cols = 15;
-
 
 int findMaxElement(int arr[], int size) {
     int maxElement = arr[0];
@@ -15,24 +14,26 @@ int findMaxElement(int arr[], int size) {
 }
 
 int main() {
+    int array[rows][cols];
 
-    int array[rows][cols] = {
-        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
-        {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17},
-        {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
-        {5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
-        {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
-        {7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21},
-        {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22},
-        {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23}
-    };
 
+    std::cout << "Enter the elements of the array:\n";
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cin >> array[i][j];
+        }
+    }
+
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            if (array[i][j] > 0) {
+                array[i][j] = array[i][j] * array[i][j];
+            }
+        }
+    }
 
     int rowSums[rows] = { 0 };
-
-
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             rowSums[i] += array[i][j];
@@ -40,15 +41,13 @@ int main() {
     }
 
 
-    std::cout << "Sum of elements in each row:" << std::endl;
+    std::cout << "Sum of elements in each row:\n";
     for (int i = 0; i < rows; ++i) {
         std::cout << "Row " << i << ": " << rowSums[i] << std::endl;
     }
 
 
     int maxElement = findMaxElement(rowSums, rows);
-
-
     std::cout << "Maximum sum of elements in rows: " << maxElement << std::endl;
 
     return 0;
